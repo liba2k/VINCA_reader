@@ -59,7 +59,7 @@ The Web UI is compressed and stored on the ESP flash. I used a library I maintai
 
 2. Access point mode, when booting and the last stored wifi network is not in range.
 
-3. mDNS publish of the HTTP service so you don't need to find the IP, you can just use `http://vinca_reader.local/`
+3. mDNS publish of the HTTP service so you don't need to find the IP, you can just use [http://vinca_reader.local/](http://vinca_reader.local/).
 
 4. OTA programming.
 
