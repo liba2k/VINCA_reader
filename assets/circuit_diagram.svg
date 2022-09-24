@@ -31,7 +31,7 @@
 	<path d="M 195,180 L 197,180 L 200,173 L 206,187 L 212,173 L 218,187 L 224,173 L 230,187 L 233,180 L 235,180" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
 	<text x="215" y="166" style="font-family:Arial;font-size:11px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 215, 166)">2.2 kΩ</text>
 	<line x1="190" y1="60" x2="190" y2="180" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<text x="190" y="35" style="font-family:Arial;font-size:12px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 190, 35)">Caliper clock</text>
+	<text x="190" y="35" style="font-family:Arial;font-size:12px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 190, 35)">Caliper data</text>
 	<line x1="190" y1="43" x2="190" y2="60" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
 	<ellipse cx="190" cy="40" rx="3" ry="3" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2" />
 	<text x="450" y="35" style="font-family:Arial;font-size:12px;text-anchor:middle" dominant-baseline="baseline" transform="rotate(0, 450, 35)">Caliper clock</text>
