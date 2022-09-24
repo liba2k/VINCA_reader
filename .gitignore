@@ -1,0 +1,5 @@
+.pio
+.vscode
+.DS_Store
+.obsidian
+static.h
