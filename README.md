@@ -35,7 +35,7 @@ The connector is a USB micro, so I cut down a cable and started looking at the l
 
 Once I understood the protocol, I was ready to work on the hardware for my solution. I wanted to use the ESP platform so I can send the data over wifi, but the serial data is at 1.2v and the ESP runs at 3.3v. I started looking at level shifters, but most of the online designs are based on the 2N7000 MOSFET, but 1.2v wasn't enough to trigger the gate. I was looking at MOSFET with lower VGS trigger voltage, but I didn't want to use a special part. Eventually, I've realized I can just use a 2N2222 bi-polar transistor. I'll lose the MOSFET performance, but it'll be more than enough for digital `1` and `0` levels.
 
-![](assets/circuit_diagram.svg)
+![](assets/circuit_diagram.png)
 
   
 
