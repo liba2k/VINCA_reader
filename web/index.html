@@ -1,7 +1,10 @@
 <html>
 <link rel="shortcut icon" type="image/png" href="favicon.png" />
 <script src="reconnecting_websocket.js"></script>
-<script src="datagridxl2.js"></script>
+<script src="jexcel.js"></script>
+<script src="jsuites.js"></script>
+
+
 <style>
     @font-face {
         font-family: 'LCD';
@@ -10,159 +13,44 @@
         src: local('LCD'), url('LCD.woff') format('woff');
     }
 </style>
+<link rel="stylesheet" href="jsuites.css" type="text/css" />
+<link rel="stylesheet" href="jexcel.css" type="text/css" />
+<link rel="stylesheet" href="jexcel.themes.css" type="text/css" />
 
 
 
-<body style="background-color: rgb(21, 32, 43); color: rgb(255, 255, 255) ; font-size: 24px;">
-    <div style="width:50%">
+<body style="background-color: rgb(21, 32, 43); color: rgb(255, 255, 255) ;font-size: 24px;">
+    <div style="width:555px">
         <div id="measurement" style="text-align: center; font-family: 'LCD', sans-serif;font-size: 40px;">0.00mm</div>
-        
-        <div id="grid" style="width:100%;height:500px;"></div>
-        <div>
-            <input type="checkbox" id="insert_mode" name="insert_mode">
-            <label for="insert_mode">Insert measurements with spacebar</label>
-        </div>
+        <div id="grid"></div>
+        <button style="width: 555px;" onclick="grid.download();">
+            <img src="csv.png" width="5%"  />
+            <br/>
+            Save
+            </button>
     </div>
 </body>
 
 <script>
-    var Socket = new ReconnectingWebSocket('ws://vinca_reader.local:81/');
-    // var Socket = new ReconnectingWebSocket('ws://' + window.location.hostname + ':81/');
+    // var Socket = new ReconnectingWebSocket('ws://vinca_reader.local:81/');
+    var Socket = new ReconnectingWebSocket('ws://' + window.location.hostname + ':81/');
     let measurement = document.getElementById("measurement");
     let cb_insert_mode = document.getElementById("insert_mode");
     let last_measurement = "0.00";
 
-    var options = {
-        data: [
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-            ["", ""],
-        ],
-        theme: {
-            "component"                 : "#15202b",
-
-            // bottombar & topbar
-            "button"                    : "#2f3b47",
-            "button-icon"               : "#8899a6",
-            "input"                     : "#15202b",
-            "input|text"                : "#ffffff",
-            "input|border"              : "#2f3b47",
-            "input:focus|border"        : "#0078ff",
-            "input-info"                : "#8899a6",
-
-            // contextmenu
-            "contextmenu"               : "#15202b",
-            "contextmenu|text"          : "#ffffff",
-            "contextmenu-item:highlight": "#192734",
-            "contextmenu-item-shortcut" : "#8899a6",
-
-
-            "blanksheet"                : "#15202b",
-            "sheet"                     : "#192734",
-            "sheet|text"                : "#ffffff",
-
-            // scrollbar
-            "scrollbar"                 : "#15202b",
-            "scrollbar|border"          : "#444444",
-
-            // grid lines
-            "gridline"                  : "#ffffff",
-            "gridline-tip"              : "#ffffff",
-            "gridline|opacity"          : 0.10,
-
-            // headers
-            "header"                    : "#15202b",
-            "header|text"               : "#ffffff",
-            "header:highlight"          : "#192734",
-            "header:selected"           : "#2a4157",
-            "header:selected|text"      : "#ffffff",
-            "header-icon"               : "#ecf5f4",
-
-            // action ranges
-            "cellrange:cut"             : "#0078ff",
-            "cellrange:copy"            : "#0078ff",
-            "cellrange:fill"            : "#ffffff",
-
-            // selection
-            "cellcursor"                : "#0078ff",
-            "cellrange:selected"        : "#0078ff",
-            "cellrange:selected|border" : "#0078ff",
-            "cellrange:selected|opacity": 0.10,
-
-            // fill handle
-            "fillhandle"                : "#0078ff",
-
-            // cell editor
-            "celleditor"                : "#0078ff",
-
-            // search
-            "searchcursor"              : "#ecf5f4",
-            "cell+found"                : "#abc5dc",
-            "cell+found|opacity"        : 0.25,
-
-            // freezeline
-            "freezeline"                : "#2a4157",
-            "freezeline-tip"            : "#2f5478",
-            "freezelineplaceholder"     : "#2f5478",
-
-            // move action
-            "move?ghost"                : "#ffffff",
-            "move?ghost|opacity"        : 0.1,
-            "move?guide"                : "#8899a6",
-            "move?guide|opacity"        : 0.5,
-
-            // freeze action
-            "freeze?hint"                : "#0078ff",
-            "freeze?ghost"               : "#ffffff",
-            "freeze?ghost|opacity"       : 0.1,
-            "freeze?guide"               : "#8899a6",
-            "freeze?guide|opacity"       : 0.5,
-
-            // resize action
-            "resize?hint"                : "#0078ff",
-            "resize?guide"               : "#0078ff",
-            "resize?guide|opacity"       : 1,
-
-            // show action
-            "show?hint"                  : "#15202b",
-            "show?hint-icon"             : "#ffffff",
-            "show?hint|border"           : "#0078ff"
-
-            }
-		};
-        var grid = new DataGridXL("grid", options);
+    let grid = jspreadsheet(document.getElementById('grid'), {
+            minDimensions: [2,12],
+            columns: [
+                { type: 'text', title:'Name', width:300 },
+                { type: 'test', title:'Size', width:200 },
+            ]
+            
+        });
 
         function add_value_to_grid() {
-            pos = grid.getCellCursorPosition();
-            grid.setCellValues(pos, last_measurement);
-            pos.y++;
-            grid.setCellCursorPosition(pos);
+            grid.setValue(grid.getCellFromCoords(grid.selectedCell[0], grid.selectedCell[1]),last_measurement)
+            grid.down();
         }
-		
-        document.getElementById("grid").onkeypress = function( evt ) {
-            if (cb_insert_mode.checked &&  evt.code == 'Space') {
-                add_value_to_grid();
-                return false;
-            }
-            return true;
-        };
 
         Socket.onmessage = function(event) {
             last_measurement = event.data.trim();

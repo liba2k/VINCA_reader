@@ -68,10 +68,6 @@ void handle_reconnecting_websocket() {
   IOT.server.sendHeader("Content-Encoding", "gzip");
   IOT.server.send_P(200, "text/javascript	", reconnecting_websocket_js, sizeof(reconnecting_websocket_js));
 }
-void handle_datagridx() {
-  IOT.server.sendHeader("Content-Encoding", "gzip");
-  IOT.server.send_P(200, "text/javascript", datagridxl2_js, sizeof(datagridxl2_js));
-}
 void handle_csvpng() {
   IOT.server.sendHeader("Content-Encoding", "gzip");
   IOT.server.send_P(200, "image/x-icon", csv_png, sizeof(csv_png));
@@ -79,6 +75,26 @@ void handle_csvpng() {
 void handle_lcd() {
   IOT.server.sendHeader("Content-Encoding", "gzip");
   IOT.server.send_P(200, "font/woff", LCD_woff, sizeof(LCD_woff));
+}
+void handle_jexcel_css() {
+  IOT.server.sendHeader("Content-Encoding", "gzip");
+  IOT.server.send_P(200, "text/css", jexcel_css, sizeof(jexcel_css));
+}
+void handle_jexcel_js() {
+  IOT.server.sendHeader("Content-Encoding", "gzip");
+  IOT.server.send_P(200, "text/javascript", jexcel_js, sizeof(jexcel_js));
+}
+void handle_jsuites_js() {
+  IOT.server.sendHeader("Content-Encoding", "gzip");
+  IOT.server.send_P(200, "text/javascript", jsuites_js, sizeof(jsuites_js));
+}
+void handle_jexcel_themes_css() {
+  IOT.server.sendHeader("Content-Encoding", "gzip");
+  IOT.server.send_P(200, "text/css", jexcel_themes_css, sizeof(jexcel_themes_css));
+}
+void handle_jsuites_css() {
+  IOT.server.sendHeader("Content-Encoding", "gzip");
+  IOT.server.send_P(200, "text/css", jsuites_css, sizeof(jsuites_css));
 }
 void setup() {
   packet = 0;
@@ -96,10 +112,14 @@ void setup() {
   IOT.initIOT("ThisPa55word!","VINCA_reader");
   IOT.server.on("/", handle_index);
   IOT.server.on("/favicon.png", handle_favicon);
-  IOT.server.on("/datagridxl2.js", handle_datagridx);
   IOT.server.on("/csv.png", handle_csvpng);
   IOT.server.on("/LCD.woff", handle_lcd);
   IOT.server.on("/reconnecting_websocket.js", handle_reconnecting_websocket);
+  IOT.server.on("/jexcel.css", handle_jexcel_css);
+  IOT.server.on("/jexcel.js", handle_jexcel_js);
+  IOT.server.on("/jexcel.themes.css", handle_jexcel_themes_css);
+  IOT.server.on("/jsuites.css", handle_jsuites_css);
+  IOT.server.on("/jsuites.js", handle_jsuites_js);
   
   webSocket.begin();
   webSocket.onEvent(webSocketEvent);
