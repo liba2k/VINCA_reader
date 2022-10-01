@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "static.h"
+#include "web_assets.h"
 #include <WebSocketsServer.h>
 #include "ESP_IOT.h"
 
