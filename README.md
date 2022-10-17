@@ -95,10 +95,13 @@ It was very easy to add support for both, and I'm assuming other models may work
   
   
 
-![](/assets/VincaReaderConnected.png)|![](/assets/VincaReaderScreenshot.png)
-:-------------------------:|:-------------------------:
+|![](/assets/VincaReaderCaliperWeb.jpg)|
+|:-------------------------:|
+|Adapter in use over WiFi powered from an external battery| 
 
-Adapter in use over WiFi powered from an external battery | Screen shot
+|![](/assets/VincaReaderIndicatorWeb.jpg)|
+|:-------------------------:|
+|Adapter in use over WiFi powered directly by the tablet connected to a digital indicator| 
 
 
   
@@ -106,8 +109,8 @@ Adapter in use over WiFi powered from an external battery | Screen shot
 The original cable from Clockwise Tools identifies as a usb keyboard and types the measurement when you press the button. With the ESP32-S2 we can have this functionality as well. (The ESP8266 doesn't have a native USB support).
 
   
-|![](/assets/VincaReaderAsUSBKeyboard.png)|
+|![](/assets/VincaReaderAsUSBKeyboard.jpg)|
 | :----------------------------------------: |
-| Google sheets on android with the adapter connected as a usb keyboard |
+| Google sheets on android with the adapter connected as a usb keyboard|
 
   
