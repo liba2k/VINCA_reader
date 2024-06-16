@@ -63,7 +63,37 @@ The Web UI is compressed and stored on the ESP flash. I used a library I maintai
 
 4. OTA programming.
 
-  
+
+
+### Building the sketch
+
+
+
+1. Run `web_page_to_c.py` to generate the file `include/web_assets.h`, which contains the UI files.
+
+2. Install https://github.com/Links2004/arduinoWebSockets.
+
+3. Build and upload the sketch to the microcontroller.
+
+
+
+#### Arduino IDE users
+
+
+
+For step 2 you can simply unzip the latest release from https://github.com/Links2004/arduinoWebSockets/releases in the Arduino libraries folder.
+
+For step 3:
+
+- Create a new sketch, save it as "VINCA_reader" and close it.
+
+- Copy all files under `src` and `include` to the VINCA_reader sketch folder.
+
+- Rename the file `main.cpp` to `VINCA_reader.ino` in the sketch folder.
+
+- Open the sketch in the Arduino IDE and build/upload as usual.
+
+
 
 ## Support for Other Hardware
 
