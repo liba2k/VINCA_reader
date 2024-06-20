@@ -110,7 +110,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(SCLCK), clock_isr, FALLING);
 
   String deviceName = "VINCA_reader";  // Soft AP and device name for OTA.
-  IOT.initIOT(deviceName, "", "ThisPa55word!", deviceName);
+  IOT.initIOT(deviceName, "password", "ThisPa55word!", deviceName);
 
   IOT.server.on("/", handle_index);
   IOT.server.on("/favicon.png", handle_favicon);
